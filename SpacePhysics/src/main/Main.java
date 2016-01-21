@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 
 import object.Asteroid;
+import object.Planet;
 
 public class Main extends Canvas implements Runnable {
 
@@ -24,6 +25,7 @@ public class Main extends Canvas implements Runnable {
 	public static final float GRAVITATIONAL_CONSTANT = 0.000000000066726f;
 	
 	private static ArrayList<Asteroid> asteroids;
+	private static ArrayList<Planet> planets;
 
 	private Thread thread;
 	private boolean running = false;
@@ -66,8 +68,10 @@ public class Main extends Canvas implements Runnable {
 	 */
 	private void init() {
 		asteroids = new ArrayList<Asteroid>();
+		planets = new ArrayList<Planet>();
 		asteroids.add(new Asteroid(300, 300, 10, 50, 8, 597200000));
 		asteroids.add(new Asteroid(500, 300, 10, 50, 8, 100));
+		planets.add(new Planet(400, 300, 300, 1000));
 		asteroids.get(0).setVelocity(0, 0);
 		asteroids.get(1).setVelocity(0, 0);
 	}
@@ -80,6 +84,9 @@ public class Main extends Canvas implements Runnable {
 		for (Asteroid asteroid: asteroids) {
 			asteroid.update();
 		}
+		for (Planet planets: planets) {
+			planets.update();
+		}
 	}
 
 	/**
@@ -91,6 +98,9 @@ public class Main extends Canvas implements Runnable {
 	private void render(Graphics g) {
 		for (Asteroid asteroid: asteroids) {
 			asteroid.render(g);
+		}
+		for (Planet planets: planets) {
+			planets.render(g);
 		}
 	}
 
@@ -159,5 +169,9 @@ public class Main extends Canvas implements Runnable {
 	
 	public static ArrayList<Asteroid> getAsteroids() {
 		return asteroids;
+	}
+	
+	public static ArrayList<Planet> getPlanets() {
+		return planets;
 	}
 }
