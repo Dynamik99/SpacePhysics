@@ -13,7 +13,7 @@ public class Planet extends Body {
 	}
 
 	public void render(Graphics g) {
-		g.setColor(Color.gray);
+		g.setColor(Color.GRAY);
 		g.fillOval((int) getX() - planetRadius, (int) getY() - planetRadius, planetRadius << 1, planetRadius << 1);
 	}
 }

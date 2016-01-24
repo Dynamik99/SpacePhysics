@@ -11,6 +11,10 @@ public abstract class Body {
 	private float xp;
 	private float yp;
 	private long bodyMass;
+	float xForceTick = 0;
+	float yForceTick = 0;
+	float xForceTickTotal = 0;
+	float yForceTickTotal = 0;
 	
 	
 	public Body(int x, int y, long mass) {
@@ -38,7 +42,11 @@ public abstract class Body {
 	}
 	
 	public void applyForce(float xForce, float yForce) {
-		accelerate(xForce / bodyMass, yForce / bodyMass);
+		xForceTick = xForce / bodyMass;
+		yForceTick = yForce / bodyMass;
+		xForceTickTotal += xForceTick;
+		yForceTickTotal += yForceTick;
+		accelerate(xForceTickTotal, yForceTickTotal);
 	}
 	
 	public void pullBodies() {
@@ -52,7 +60,6 @@ public abstract class Body {
 				float force = Main.GRAVITATIONAL_CONSTANT * ((getMass() * body.getMass()) / (distance * distance));
 				float angle = (float) Math.atan2(-xd, -yd);
 				applyAngledForce(force, angle);
-				System.out.println(force + angle);
 			}
 		}
 	}
@@ -65,6 +72,11 @@ public abstract class Body {
 	public void update() {
 		pullBodies();
 		move();
+	}
+	
+	public void setPosition(int x, int y) {
+		xp = x;
+		yp = y;
 	}
 	
 	public long getMass() {
