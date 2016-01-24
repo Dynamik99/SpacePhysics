@@ -50,8 +50,9 @@ public abstract class Body {
 				float ySq = yd * yd;
 				float distance = (float) Math.sqrt(xSq + ySq);
 				float force = Main.GRAVITATIONAL_CONSTANT * ((getMass() * body.getMass()) / (distance * distance));
-				float angle = (float) (Math.PI + Math.atan2(-xd, yd));
+				float angle = (float) Math.atan2(-xd, -yd);
 				applyAngledForce(force, angle);
+				System.out.println(force + angle);
 			}
 		}
 	}
