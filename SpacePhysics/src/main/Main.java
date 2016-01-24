@@ -10,9 +10,9 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
-import object.Asteroid;
 import object.Body;
 import object.Planet;
+import object.Star;
 
 public class Main extends Canvas implements Runnable {
 
@@ -69,8 +69,9 @@ public class Main extends Canvas implements Runnable {
 	 */
 	private void init() {
 		bodies = new ArrayList<Body>();
-		bodies.add(new Planet(200, 200, 100, 15678567820L));
-		bodies.add(new Planet(500, 600, 100, 15675675620L));
+		Star star = new Star(500, 300, 100, 2523486963487634L);
+		star.addBody(new Planet(0, 0, 10, 348769346L), 250, 0.8f, 0.5f);
+		bodies.add(star);
 	}
 
 	/**
