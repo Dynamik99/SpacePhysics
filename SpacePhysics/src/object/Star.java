@@ -14,7 +14,6 @@ public class Star extends Body {
 	private ArrayList<Float> positions;
 	
 	public Star(int x, int y, int radius, long mass) {
-		
 		super(x, y, mass);
 		starRadius = radius;
 		bodies = new ArrayList<Body>();
