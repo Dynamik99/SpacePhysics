@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 
 import object.Asteroid;
+import object.Body;
 import object.Planet;
 
 public class Main extends Canvas implements Runnable {
@@ -22,10 +23,10 @@ public class Main extends Canvas implements Runnable {
 	public static final int WIDTH = 1280;
 	public static final int HEIGHT = 720;
 	public static final int TICKS_PER_SECOND = 60;
-	public static final float GRAVITATIONAL_CONSTANT = 0.000000000066726f;
+//	public static final float GRAVITATIONAL_CONSTANT = 0.000000000067408f;
+	public static final float GRAVITATIONAL_CONSTANT = 0.0067408f;
 	
-	private static ArrayList<Asteroid> asteroids;
-	private static ArrayList<Planet> planets;
+	private static ArrayList<Body> bodies;
 
 	private Thread thread;
 	private boolean running = false;
@@ -67,13 +68,10 @@ public class Main extends Canvas implements Runnable {
 	 * Wordt eenmalig geroepen bij het opstarten.
 	 */
 	private void init() {
-		asteroids = new ArrayList<Asteroid>();
-		planets = new ArrayList<Planet>();
-		asteroids.add(new Asteroid(300, 300, 10, 50, 8, 597200000));
-		asteroids.add(new Asteroid(500, 300, 10, 50, 8, 100));
-		planets.add(new Planet(400, 300, 300, 1000));
-		asteroids.get(0).setVelocity(0, 0);
-		asteroids.get(1).setVelocity(0, 0);
+		bodies = new ArrayList<Body>();
+		bodies.add(new Planet(600, 450, 100, 295678567820L));
+		bodies.add(new Planet(400, 450, 100, 595675675620L));
+		bodies.get(1).setVelocity(10, 5);
 	}
 
 	/**
@@ -81,11 +79,8 @@ public class Main extends Canvas implements Runnable {
 	 * static variabele TICKS_PER_SECOND
 	 */
 	private void update() {
-		for (Asteroid asteroid: asteroids) {
-			asteroid.update();
-		}
-		for (Planet planets: planets) {
-			planets.update();
+		for (Body body: bodies) {
+			body.update();
 		}
 	}
 
@@ -96,11 +91,8 @@ public class Main extends Canvas implements Runnable {
 	 *            De Graphics die het scherm gebruikt.
 	 */
 	private void render(Graphics g) {
-		for (Asteroid asteroid: asteroids) {
-			asteroid.render(g);
-		}
-		for (Planet planets: planets) {
-			planets.render(g);
+		for (Body body: bodies) {
+			body.render(g);
 		}
 	}
 
@@ -167,11 +159,7 @@ public class Main extends Canvas implements Runnable {
 		return 1f / TICKS_PER_SECOND;
 	}
 	
-	public static ArrayList<Asteroid> getAsteroids() {
-		return asteroids;
-	}
-	
-	public static ArrayList<Planet> getPlanets() {
-		return planets;
+	public static ArrayList<Body> getBodies() {
+		return bodies;
 	}
 }
