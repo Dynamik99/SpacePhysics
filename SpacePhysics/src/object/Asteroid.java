@@ -29,6 +29,7 @@ public class Asteroid extends Body {
 			xRel[i] = xPos;
 			yRel[i] = yPos;
 		}
+		
 		updatePoints();
 	}
 	

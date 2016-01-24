@@ -87,8 +87,7 @@ public class Main extends Canvas implements Runnable {
 	/**
 	 * Hierin kan je de game renderen.
 	 * 
-	 * @param g
-	 *            De Graphics die het scherm gebruikt.
+	 * @param g De Graphics die het scherm gebruikt.
 	 */
 	private void render(Graphics g) {
 		for (Body body: bodies) {

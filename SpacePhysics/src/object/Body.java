@@ -47,6 +47,7 @@ public abstract class Body {
 		xForceTickTotal += xForceTick;
 		yForceTickTotal += yForceTick;
 		accelerate(xForceTickTotal, yForceTickTotal);
+		
 	}
 	
 	public void pullBodies() {
