@@ -2,5 +2,5 @@ package object;
 
 public class Star {
 	
-	// STAR CODE HEYYY KOEN
+	// STAR CODE HEYYY KOEN.
 }
