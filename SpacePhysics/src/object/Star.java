@@ -29,6 +29,7 @@ public class Star extends Body {
 	
 	public void updateBodies() {
 		for(int i = 0;i < bodies.size(); i++) {
+			bodies.get(i).update();
 			float loop = (float) (2f * Math.PI * ((float) distances.get(i)));
 			float offset = positions.get(i);
 			offset += velocities.get(i) / loop;
@@ -40,12 +41,15 @@ public class Star extends Body {
 			}
 			positions.set(i, offset);
 			float angle = (float) (offset * 2f * Math.PI);
-			bodies.get(i).setPosition((int) (Math.cos(angle) * distances.get(i)), (int) (Math.sin(angle) * distances.get(i)));
+			bodies.get(i).setPosition((int) (getX() + (Math.cos(angle) * distances.get(i))), (int) (getY() + (Math.sin(angle) * distances.get(i))));
 		}
 	}
 
 	@Override
 	public void render(Graphics g) {
+		for(int i = 0;i < bodies.size(); i++) {
+			bodies.get(i).render(g);
+		}
 		g.setColor(Color.orange);
 		g.fillOval((int) getX() - starRadius, (int) getY() - starRadius, starRadius << 1, starRadius << 1);
 	}
