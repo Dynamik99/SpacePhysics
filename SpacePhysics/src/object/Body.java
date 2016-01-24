@@ -11,8 +11,6 @@ public abstract class Body {
 	private float xp;
 	private float yp;
 	private long bodyMass;
-	float xForceTick = 0;
-	float yForceTick = 0;
 	float xForceTickTotal = 0;
 	float yForceTickTotal = 0;
 	
@@ -38,15 +36,19 @@ public abstract class Body {
 	public void applyAngledForce(float force, float angle) {
 		float xForce = (float) (Math.sin(angle) * force);
 		float yForce = (float) (Math.cos(angle) * force);
-		applyForce(xForce, yForce);
+		xForceTickTotal += xForce;
+		yForceTickTotal += yForce;
 	}
 	
 	public void applyForce(float xForce, float yForce) {
-		xForceTick = xForce / bodyMass;
-		yForceTick = yForce / bodyMass;
-		xForceTickTotal += xForceTick;
-		yForceTickTotal += yForceTick;
-		accelerate(xForceTickTotal, yForceTickTotal);
+		xForceTickTotal += xForce;
+		yForceTickTotal += yForce;
+	}
+	
+	public void startTick() {
+		accelerate(xForceTickTotal / bodyMass, yForceTickTotal / bodyMass);
+		xForceTickTotal = 0;
+		yForceTickTotal = 0;
 	}
 	
 	public void pullBodies() {
@@ -70,6 +72,7 @@ public abstract class Body {
 	}
 	
 	public void update() {
+		startTick();
 		pullBodies();
 		move();
 	}

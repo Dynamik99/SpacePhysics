@@ -71,6 +71,8 @@ public class Main extends Canvas implements Runnable {
 		bodies = new ArrayList<Body>();
 		bodies.add(new Planet(200, 200, 100, 15678567820L));
 		bodies.add(new Planet(500, 600, 100, 15675675620L));
+		bodies.get(0).setVelocity(50, 0);
+		bodies.get(1).setVelocity(-50, 0);
 	}
 
 	/**
